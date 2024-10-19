@@ -16,12 +16,12 @@
 .load-booking-section {
     position: absolute; 
     left: 850px; 
-    top: 100px;
+    top: 20px;
 }
 
 .booking-section {
     position: relative;
     right: 25px;
-    top: 200px; 
+    top: 155px; 
     width: 500px; 
 }

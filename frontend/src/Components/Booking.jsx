@@ -56,13 +56,13 @@ const Bookings = () => {
         };
 
 
-        // Retrieve existing bookings from localStorage (if any), or initialize an empty array
+
         const existingBookings = JSON.parse(localStorage.getItem(`${getMonthName(month)} ${selectedDate}, ${year}`)) || [];
 
-        // Add the new booking to the array
+
         existingBookings.push(booking);
 
-        // Save the updated array to localStorage
+
         localStorage.setItem(`${getMonthName(month)} ${selectedDate}, ${year}`, JSON.stringify(existingBookings));
 
 
@@ -76,6 +76,7 @@ const Bookings = () => {
 
     return(
         <>
+            <h1>Create Bookings</h1>
             <div className="Booking">
                 <h3>What would you like to book for {getMonthName(month)} {selectedDate}{ending}, {year}?</h3>
                 <form>

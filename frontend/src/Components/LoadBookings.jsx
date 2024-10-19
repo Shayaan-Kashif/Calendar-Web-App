@@ -1,6 +1,7 @@
 import React, { useState, useContext, useEffect } from "react"; 
 import "../Styles/LoadBookings.css";
 import { DateContext } from '../Context/DateContext';
+import BookingDisplayCard from "./BookingDisplayCard";
 
 const LoadBookings = () => {
 
@@ -50,18 +51,19 @@ const LoadBookings = () => {
 
     return(
         <>
+            <h1>View Bookings</h1>
             <div className="LoadBookings">
-                <h3>Bookings for {getMonthName(month)} {selectedDate}{ending}, {year}</h3>
+                <h3>Bookings for {getMonthName(month)} {selectedDate}{ending}, {year}</h3 >
                 {bookings.length > 0 ? (
-                    <ul>
-                        {bookings.map((booking, index) => (
-                            <li key={index}>
-                                <strong>Title:</strong> {booking.title} <br />
-                                <strong>Reason:</strong> {booking.reason} <br />
-                                <strong>Time Slot:</strong> {booking.timeSlot}
-                            </li>
-                        ))}
-                    </ul>
+                        bookings.map((booking, index) => (
+                            <BookingDisplayCard 
+                            key ={index} 
+                            title = {booking.title} 
+                            reason={booking.reason} 
+                            time={booking.timeSlot} 
+                            />  
+                        ))
+                    
                 ) : (
                     <p>No bookings for this date.</p>
                 )}
@@ -72,3 +74,33 @@ const LoadBookings = () => {
 
 
 export default LoadBookings;
+
+
+
+/*
+ <strong>Title:</strong> {booking.title} <br />
+                                <strong>Reason:</strong> {booking.reason} <br />
+                                <strong>Time Slot:</strong> {booking.timeSlot}
+
+*/
+
+/*
+<h1>View Bookings</h1>
+            <div className="LoadBookings">
+                <h3>Bookings for {getMonthName(month)} {selectedDate}{ending}, {year}</h3 >
+                {bookings.length > 0 ? (
+                    <ul>
+                        {bookings.map((booking, index) => (
+                            <li key={index}>
+                                <BookingDisplayCard title = {booking.title} reason={booking.reason} time={booking.timeSlot} />
+                               
+                            </li>
+                        ))}
+                    </ul>
+                ) : (
+                    <p>No bookings for this date.</p>
+                )}
+            </div>
+
+
+*/
