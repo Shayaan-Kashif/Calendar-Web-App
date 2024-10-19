@@ -1,4 +1,4 @@
-import React, { useState, useContext,useEffect } from "react"; // Add useContext to your import
+import React, { useState, useContext,useEffect } from "react"; 
 import '../Styles/Bookings.css';
 import { DateContext } from '../Context/DateContext';
 
@@ -6,6 +6,12 @@ const Bookings = () => {
 
     const {today, year, month, day, selectedDate, setYear, setMonth, setDay, setSelectedDate } = useContext(DateContext);
     const [ending, setEnding] = useState("th");
+
+    const [title, setTitle] = useState("");
+    const [reason, setReason] = useState("");
+    const [timeSlot, setTimeSlot] = useState("");
+    const [BookingStatus,SetBookingStatus] = useState("");
+   
 
     const getMonthName = (month) => {
         const monthNames = [
@@ -37,21 +43,54 @@ const Bookings = () => {
       },[selectedDate]);
 
 
+
+
+      const hanndleBook = (e)=>{
+        e.preventDefault();
+        
+        const booking = {
+            title: title,
+            reason: reason,
+            timeSlot: timeSlot,
+            date: `${getMonthName(month)} ${selectedDate}, ${year}`
+        };
+
+
+        // Retrieve existing bookings from localStorage (if any), or initialize an empty array
+        const existingBookings = JSON.parse(localStorage.getItem(`${getMonthName(month)} ${selectedDate}, ${year}`)) || [];
+
+        // Add the new booking to the array
+        existingBookings.push(booking);
+
+        // Save the updated array to localStorage
+        localStorage.setItem(`${getMonthName(month)} ${selectedDate}, ${year}`, JSON.stringify(existingBookings));
+
+
+        setTitle("");
+        setReason("");
+        setTimeSlot("");
+        SetBookingStatus("Booking Saved!");
+
+      }
+
+
     return(
         <>
             <div className="Booking">
                 <h3>What would you like to book for {getMonthName(month)} {selectedDate}{ending}, {year}?</h3>
                 <form>
                     <label for="title">Title:</label>
-                    <input type="text" name="title" className="booking-text" value=" Enter Title Here..."></input>
+                    <input type="text" name="title" className="booking-text" value={title} placeholder="Enter Your Title Here..." onChange={(e) => setTitle(e.target.value)}></input>
 
                     <label for="reason">Reason:</label>
-                    <input type="text" name="reason" className="booking-text" value="Enter Reason Here..."></input>
+                    <input type="text" name="reason" className="booking-text" value={reason} placeholder="Enter Reason Here..." onChange={(e) => setReason(e.target.value)}></input>
 
                     <label for="time-slot">Time Solt:</label>
-                    <input type="time" name="time-slot"></input>
+                    <input type="time" name="time-slot" value={timeSlot} onChange={(e) => setTimeSlot(e.target.value)}></input>
 
-                    <button>Book</button>
+                    <button onClick={hanndleBook}>Book</button>
+
+                    <p>{BookingStatus}</p>
                 </form>
             </div>
         

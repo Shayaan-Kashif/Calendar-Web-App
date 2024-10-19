@@ -6,6 +6,7 @@ const LoadBookings = () => {
 
     const {today, year, month, day, selectedDate, setYear, setMonth, setDay, setSelectedDate } = useContext(DateContext);
     const [ending, setEnding] = useState("th");
+    const [bookings, setBookings] = useState([]);
 
    useEffect(()=>{
 
@@ -37,11 +38,33 @@ const LoadBookings = () => {
       };
 
 
+      useEffect(() => {
+
+        const Key = `${getMonthName(month)} ${selectedDate}, ${year}`;
+        const storedBookings = JSON.parse(localStorage.getItem(Key)) || [];
+
+
+        setBookings(storedBookings);
+    }, [selectedDate, month, year]);
+
+
     return(
         <>
             <div className="LoadBookings">
                 <h3>Bookings for {getMonthName(month)} {selectedDate}{ending}, {year}</h3>
-
+                {bookings.length > 0 ? (
+                    <ul>
+                        {bookings.map((booking, index) => (
+                            <li key={index}>
+                                <strong>Title:</strong> {booking.title} <br />
+                                <strong>Reason:</strong> {booking.reason} <br />
+                                <strong>Time Slot:</strong> {booking.timeSlot}
+                            </li>
+                        ))}
+                    </ul>
+                ) : (
+                    <p>No bookings for this date.</p>
+                )}
             </div>
         </>
     )
