@@ -1,14 +1,18 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react"; // Add useContext to your import
 import '../Styles/Calendar.css';
+import { DateContext } from '../Context/DateContext';
 
 const Calendar = () => {
 
+    const {today, year, month, day, selectedDate, setYear, setMonth, setDay, setSelectedDate } = useContext(DateContext);
+
+    /*
     const today = new Date();
     const [year, setYear] = useState(today.getFullYear());
     const [month, setMonth] = useState((today.getMonth())+1); //) based so add 1 to get the actual month from 1-12
     const [day, setDay] = useState(today.getDate());
     const [selectedDate, setSelectedDate] = useState(day);
-
+    */
 
 
     const getMonthName = (month) => {
