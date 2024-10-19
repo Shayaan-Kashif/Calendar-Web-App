@@ -1,0 +1,27 @@
+.main-view-container {
+    display: flex;
+    justify-content: space-between; 
+    align-items: flex-start; 
+    height: 100vh; 
+    padding: 20px;
+    box-sizing: border-box;
+    overflow: hidden; 
+}
+
+.calendar-section {
+    position: relative;
+    left:30px;
+}
+
+.load-booking-section {
+    position: absolute; 
+    left: 850px; 
+    top: 100px;
+}
+
+.booking-section {
+    position: relative;
+    right: 25px;
+    top: 200px; 
+    width: 500px; 
+}

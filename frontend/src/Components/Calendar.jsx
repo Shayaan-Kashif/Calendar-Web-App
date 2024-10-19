@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import '../Styles/Calendar.css';
 
 const Calendar = () => {
 
@@ -6,8 +7,17 @@ const Calendar = () => {
     const [year, setYear] = useState(today.getFullYear());
     const [month, setMonth] = useState((today.getMonth())+1); //) based so add 1 to get the actual month from 1-12
     const [day, setDay] = useState(today.getDate());
+    const [selectedDate, setSelectedDate] = useState(day);
 
 
+
+    const getMonthName = (month) => {
+        const monthNames = [
+          "January", "February", "March", "April", "May", "June",
+          "July", "August", "September", "October", "November", "December"
+        ];
+        return monthNames[month - 1];
+      };
 
 
     const getDaysInMonth = (month, year)=>{
@@ -80,37 +90,63 @@ const Calendar = () => {
         weeks.push(calendarDays.splice(0, 7)); // Split into chunks of 7 (for each week)
       }
 
+    // Function to handle clicking on a date
+    const handleDateClick = (day) => {
+        setSelectedDate(day);
+    };
+
+
     return(
         <>
-            <h1>Calendar Component</h1>
-            <p>The day is {day} the month is {month} the year is {year}</p>
-            <p>There are {daysInMonth} in the month {month} in the year {year}</p>
-            <p>The start day for the {month} in {year} year is {startDay}</p>
-            <table>
-                <thead>
-                    <th>Sun</th>
-                    <th>Mon</th>
-                    <th>Tue</th>
-                    <th>Wed</th>
-                    <th>Thu</th>
-                    <th>Fri</th>
-                    <th>Sat</th> 
-                </thead>
-                <tbody>
-                {weeks.map((week, weekIndex) => (
+            <h1>Calendar</h1>
+            
+            <div className="Cal-table">
+                <table>                
+                    <thead>
+                        <tr className="button-header">
+                            <td colSpan='2'><button className= "Cal-button" onClick={handlePreviousMonth}>Previous</button></td>
+                            <td colSpan='2'> <button className= "Cal-button" onClick={handleToday}>Today</button></td>
+                            <td colSpan='2'> <button className= "Cal-button" onClick={handleNextMonth}>Next</button></td>
+                        </tr>
+                        <tr className="Cal-header">
+                            <td colSpan='3'>{getMonthName(month)}</td>
+                            <td colSpan='4'>{year}</td>
+                        </tr>
+                        <tr>
+                            <th>Sun</th>
+                            <th>Mon</th>
+                            <th>Tue</th>
+                            <th>Wed</th>
+                            <th>Thu</th>
+                            <th>Fri</th>
+                            <th>Sat</th>
+                        </tr> 
+                    </thead>
+                    <tbody>
+
+                    {weeks.map((week, weekIndex) => (
                     <tr key={weekIndex}>
-                {week.map((day, dayIndex) => (
-                        <td key={dayIndex}>{day || ''}</td> // Render day or empty cell
-              ))}
-                    </tr>
-          ))}
+                    {week.map((day, dayIndex) => (
+                        <td
+                        key={dayIndex}
+                        onClick={() => handleDateClick(day)} // Add onClick event
+                        className={`calendar-cell ${
+                            day === selectedDate ? "selected-date" : ""
+                        }`}
+                        >
+                        {day || ""} {/* Render day or empty cell */}
+                    </td>
+                ))}
+                </tr>
+            ))}
+                    </tbody>
+                </table>
+            </div>
 
-                </tbody>
-            </table>
-
-        <button onClick={handleNextMonth}>Next Month</button>
-        <button onClick={handlePreviousMonth}>Previous Month</button>
-        <button onClick={handleToday}>Today</button>
+       
+        
+       
+       
 
         </>
     )

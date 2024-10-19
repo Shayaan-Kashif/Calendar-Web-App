@@ -1,13 +1,16 @@
 import React from "react";
+import "../Styles/LoadBookings.css";
+
 const LoadBookings = () => {
 
 
 
     return(
         <>
-            <h3>Load bookings compent</h3>
-        
-        
+            <div className="LoadBookings">
+                <h3>Bookings for the Day</h3>
+
+            </div>
         </>
     )
 }

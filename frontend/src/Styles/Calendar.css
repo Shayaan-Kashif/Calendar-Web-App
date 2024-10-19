@@ -1,0 +1,79 @@
+.calendar-cell {
+    cursor: pointer;
+    padding: 30px; 
+    text-align: center;
+    border-radius: 50%; 
+    font-size: 24px; 
+    
+}
+
+
+.calendar-cell:hover {
+    background-color: rgb(227, 227, 227); 
+}
+
+
+.selected-date {
+    background-color: lightblue; 
+    font-weight: bold;
+    font-size: 26px; 
+}
+
+
+.Cal-table {
+    width: 700px; 
+    height: 700px; 
+    background-color: #f9f9f9;
+    border-radius: 10px;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+    margin: 0 auto; 
+    padding: 20px; 
+}
+
+
+.Cal-button {
+    width: 140px; 
+    height: 45px; 
+    background-color: white;
+    font-weight: bold;
+    border: none;
+    border-radius: 10px;
+    font-size: 20px; 
+    padding: 10px;
+    transition: background-color 0.3s ease; 
+}
+
+
+.Cal-button:hover {
+    cursor: pointer;
+    background-color: rgb(227, 227, 227);
+}
+
+
+.Cal-header {
+    padding: 15px;
+    text-align: center;
+    font-weight: bold;
+    font-size: 28px; 
+}
+
+
+.button-header {
+    padding: 15px;
+}
+
+
+th {
+    font-size: 22px; 
+    padding: 20px; 
+    background-color: #f1f1f1;
+    border-radius: 5px;
+}
+
+
+td {
+    padding: 30px; 
+    text-align: center;
+    font-size: 24px; 
+    border: none;
+}
