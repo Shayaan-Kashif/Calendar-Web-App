@@ -1,4 +1,4 @@
-import React, { useState, useContext } from "react"; // Add useContext to your import
+import React, { useState, useContext } from "react"; 
 import '../Styles/Calendar.css';
 import { DateContext } from '../Context/DateContext';
 
@@ -37,6 +37,7 @@ const Calendar = () => {
         setYear(today.getFullYear());
         setMonth((today.getMonth())+1);
         setDay(today.getDate());
+        setSelectedDate(day);
     }
 
 
