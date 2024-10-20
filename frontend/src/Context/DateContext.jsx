@@ -11,10 +11,11 @@ export const DateProvider = ({ children }) => {
   const [month, setMonth] = useState(today.getMonth() + 1); 
   const [day, setDay] = useState(today.getDate());
   const [selectedDate, setSelectedDate] = useState(day);
+  const [bookingNum, setBookingNum] = useState(0);
 
 
   return (
-    <DateContext.Provider value={{today, year, setYear, month, setMonth, day, setDay, selectedDate, setSelectedDate }}>
+    <DateContext.Provider value={{today, year, setYear, month, setMonth, day, setDay, selectedDate, setSelectedDate, bookingNum, setBookingNum }}>
       {children}
     </DateContext.Provider>
   );

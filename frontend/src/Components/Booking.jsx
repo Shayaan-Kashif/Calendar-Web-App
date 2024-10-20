@@ -4,7 +4,7 @@ import { DateContext } from '../Context/DateContext';
 
 const Bookings = () => {
 
-    const {today, year, month, day, selectedDate, setYear, setMonth, setDay, setSelectedDate } = useContext(DateContext);
+    const {today, year, month, day, selectedDate, setYear, setMonth, setDay, setSelectedDate, bookingNum, setBookingNum} = useContext(DateContext);
     const [ending, setEnding] = useState("th");
 
     const [title, setTitle] = useState("");
@@ -70,6 +70,7 @@ const Bookings = () => {
         setReason("");
         setTimeSlot("");
         SetBookingStatus("Booking Saved!");
+        setBookingNum(bookingNum+1);
 
       }
 

@@ -5,7 +5,7 @@ import BookingDisplayCard from "./BookingDisplayCard";
 
 const LoadBookings = () => {
 
-    const {today, year, month, day, selectedDate, setYear, setMonth, setDay, setSelectedDate } = useContext(DateContext);
+    const {today, year, month, day, selectedDate, setYear, setMonth, setDay, setSelectedDate, bookingNum, setBookingNum } = useContext(DateContext);
     const [ending, setEnding] = useState("th");
     const [bookings, setBookings] = useState([]);
 
@@ -46,7 +46,7 @@ const LoadBookings = () => {
 
 
         setBookings(storedBookings);
-    }, [selectedDate, month, year]);
+    }, [selectedDate, month, year, bookingNum]);
 
 
     return(
@@ -77,30 +77,3 @@ export default LoadBookings;
 
 
 
-/*
- <strong>Title:</strong> {booking.title} <br />
-                                <strong>Reason:</strong> {booking.reason} <br />
-                                <strong>Time Slot:</strong> {booking.timeSlot}
-
-*/
-
-/*
-<h1>View Bookings</h1>
-            <div className="LoadBookings">
-                <h3>Bookings for {getMonthName(month)} {selectedDate}{ending}, {year}</h3 >
-                {bookings.length > 0 ? (
-                    <ul>
-                        {bookings.map((booking, index) => (
-                            <li key={index}>
-                                <BookingDisplayCard title = {booking.title} reason={booking.reason} time={booking.timeSlot} />
-                               
-                            </li>
-                        ))}
-                    </ul>
-                ) : (
-                    <p>No bookings for this date.</p>
-                )}
-            </div>
-
-
-*/
