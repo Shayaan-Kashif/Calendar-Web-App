@@ -15,6 +15,7 @@
 
 .selected-date {
     background-color: lightblue; 
+    color: black;
     font-weight: bold;
     font-size: 26px; 
 }
@@ -76,4 +77,10 @@ td {
     text-align: center;
     font-size: 24px; 
     border: none;
+}
+
+.booked-day {
+    
+    color: red;
+    font-weight: bold;
 }

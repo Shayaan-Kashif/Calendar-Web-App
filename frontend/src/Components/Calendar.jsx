@@ -1,18 +1,26 @@
-import React, { useState, useContext } from "react"; 
+import React, { useState, useContext,useEffect } from "react"; 
 import '../Styles/Calendar.css';
 import { DateContext } from '../Context/DateContext';
 
 const Calendar = () => {
 
-    const {today, year, month, day, selectedDate, setYear, setMonth, setDay, setSelectedDate } = useContext(DateContext);
+    const {today, year, month, day, selectedDate, setYear, setMonth, setDay, setSelectedDate, bookingNum, setBookingNum } = useContext(DateContext);
+    const [bookings, setBookings] = useState([]);
+    const [bookedDays, setBookedDays] = useState([]);
 
-    /*
-    const today = new Date();
-    const [year, setYear] = useState(today.getFullYear());
-    const [month, setMonth] = useState((today.getMonth())+1); //) based so add 1 to get the actual month from 1-12
-    const [day, setDay] = useState(today.getDate());
-    const [selectedDate, setSelectedDate] = useState(day);
-    */
+
+    useEffect(() => {
+        const daysWithBookings = [];
+    
+        for (let day = 1; day <= daysInMonth; day++) {
+            if (checkForBookedDays(day)) {
+                daysWithBookings.push(day);
+            }
+        }
+    
+        setBookedDays(daysWithBookings);
+    }, [month, year, bookingNum]);
+    
 
 
     const getMonthName = (month) => {
@@ -95,6 +103,15 @@ const Calendar = () => {
         weeks.push(calendarDays.splice(0, 7)); // Split into chunks of 7 (for each week)
       }
 
+      const checkForBookedDays = (day) => {
+        const Key = `${getMonthName(month)} ${day}, ${year}`;;
+        const storedBookings = JSON.parse(localStorage.getItem(Key)) || [];
+        return storedBookings.length > 0;
+    };
+    
+
+
+
     // Function to handle clicking on a date
     const handleDateClick = (day) => {
         setSelectedDate(day);
@@ -137,7 +154,7 @@ const Calendar = () => {
                         onClick={() => handleDateClick(day)} // Add onClick event
                         className={`calendar-cell ${
                             day === selectedDate ? "selected-date" : ""
-                        }`}
+                        } ${bookedDays.includes(day) ? "booked-day" : ""} `}
                         >
                         {day || ""} {/* Render day or empty cell */}
                     </td>
