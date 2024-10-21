@@ -7,11 +7,16 @@ const Bookings = () => {
     const {today, year, month, day, selectedDate, setYear, setMonth, setDay, setSelectedDate, bookingNum, setBookingNum} = useContext(DateContext);
     const [ending, setEnding] = useState("th");
 
+
     const [title, setTitle] = useState("");
     const [reason, setReason] = useState("");
     const [timeSlot, setTimeSlot] = useState("");
     const [BookingStatus,SetBookingStatus] = useState("");
    
+
+    const [titleError, setTitleError] = useState("");
+    const [reasonError, setReasonError] = useState("");
+    const [timeSlotError, setTimeSlotError] = useState("");
 
     const getMonthName = (month) => {
         const monthNames = [
@@ -47,30 +52,65 @@ const Bookings = () => {
 
       const hanndleBook = (e)=>{
         e.preventDefault();
+
+
+        let isValid = true;
+
+        if (title.trim() === "") {
+            setTitleError("Title is required");
+            isValid = false;
+        } 
         
-        const booking = {
-            title: title,
-            reason: reason,
-            timeSlot: timeSlot,
-            date: `${getMonthName(month)} ${selectedDate}, ${year}`
-        };
+        else {
+            setTitleError("");
+        }
+
+        if (reason.trim() === "") {
+            setReasonError("Reason is required");
+            isValid = false;
+        } 
+        
+        else {
+            setReasonError("");
+        }
+
+        if (timeSlot === "") {
+            setTimeSlotError("Time slot is required");
+            isValid = false;
+        } 
+        
+        else {
+            setTimeSlotError("");
+        }
 
 
 
-        const existingBookings = JSON.parse(localStorage.getItem(`${getMonthName(month)} ${selectedDate}, ${year}`)) || [];
+        if(isValid){
+
+            const booking = {
+                title: title,
+                reason: reason,
+                timeSlot: timeSlot,
+                date: `${getMonthName(month)} ${selectedDate}, ${year}`
+            };
 
 
-        existingBookings.push(booking);
+
+            const existingBookings = JSON.parse(localStorage.getItem(`${getMonthName(month)} ${selectedDate}, ${year}`)) || [];
 
 
-        localStorage.setItem(`${getMonthName(month)} ${selectedDate}, ${year}`, JSON.stringify(existingBookings));
+            existingBookings.push(booking);
 
 
-        setTitle("");
-        setReason("");
-        setTimeSlot("");
-        SetBookingStatus("Booking Saved!");
-        setBookingNum(bookingNum+1);
+            localStorage.setItem(`${getMonthName(month)} ${selectedDate}, ${year}`, JSON.stringify(existingBookings));
+
+
+            setTitle("");
+            setReason("");
+            setTimeSlot("");
+            SetBookingStatus("Booking Saved!");
+            setBookingNum(bookingNum+1);
+        }
 
       }
 

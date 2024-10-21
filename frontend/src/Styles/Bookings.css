@@ -9,6 +9,10 @@
     font-family: Arial, sans-serif;
   }
   
+  h1 {
+    width: 300px;
+
+  }
 
   .Booking h3 {
     text-align: center;

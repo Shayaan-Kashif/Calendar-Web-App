@@ -8,6 +8,7 @@ const BookingDisplayCard = ({title,reason,time})=>{
         <>
         <div class="card">
             <p><strong>Time: </strong>{time} <strong>Title: </strong>{title} <strong>Reason: </strong>{reason} </p>
+           
             
         </div>
         </>
@@ -15,3 +16,6 @@ const BookingDisplayCard = ({title,reason,time})=>{
 }
 
 export default BookingDisplayCard;
+
+
+/*<p><strong>Time: </strong>{time} <strong>Title: </strong>{title} <strong>Reason: </strong>{reason} </p>*/

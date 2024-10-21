@@ -127,7 +127,7 @@ const Calendar = () => {
                     <thead>
                         <tr className="button-header">
                             <td colSpan='2'><button className= "Cal-button" onClick={handlePreviousMonth}>Previous</button></td>
-                            <td colSpan='2'> <button className= "Cal-button" onClick={handleToday}>Today</button></td>
+                            <td colSpan='3'> <button className= "Cal-button" onClick={handleToday}>Today</button></td>
                             <td colSpan='2'> <button className= "Cal-button" onClick={handleNextMonth}>Next</button></td>
                         </tr>
                         <tr className="Cal-header">
