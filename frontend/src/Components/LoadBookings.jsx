@@ -58,9 +58,11 @@ const LoadBookings = () => {
                         bookings.map((booking, index) => (
                             <BookingDisplayCard 
                             key ={index} 
+                            id= {booking.id}
                             title = {booking.title} 
                             reason={booking.reason} 
-                            time={booking.timeSlot} 
+                            time={booking.timeSlot}
+                            date={`${getMonthName(month)} ${selectedDate}, ${year}`}
                             />  
                         ))
                     

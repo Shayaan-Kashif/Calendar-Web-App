@@ -12,10 +12,18 @@ export const DateProvider = ({ children }) => {
   const [day, setDay] = useState(today.getDate());
   const [selectedDate, setSelectedDate] = useState(day);
   const [bookingNum, setBookingNum] = useState(0);
+  const [id, setId] = useState(()=>{
+    if(localStorage.getItem("ID")){
+      return JSON.parse(localStorage.getItem("ID"));
+    }
+    else{
+      return 0;
+    }
+  });
 
 
   return (
-    <DateContext.Provider value={{today, year, setYear, month, setMonth, day, setDay, selectedDate, setSelectedDate, bookingNum, setBookingNum }}>
+    <DateContext.Provider value={{today, year, setYear, month, setMonth, day, setDay, selectedDate, setSelectedDate, bookingNum, setBookingNum,id, setId }}>
       {children}
     </DateContext.Provider>
   );

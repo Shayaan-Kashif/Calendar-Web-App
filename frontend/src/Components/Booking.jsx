@@ -4,7 +4,7 @@ import { DateContext } from '../Context/DateContext';
 
 const Bookings = () => {
 
-    const {today, year, month, day, selectedDate, setYear, setMonth, setDay, setSelectedDate, bookingNum, setBookingNum} = useContext(DateContext);
+    const {today, year, month, day, selectedDate, setYear, setMonth, setDay, setSelectedDate, bookingNum, setBookingNum,id, setId} = useContext(DateContext);
     const [ending, setEnding] = useState("th");
 
 
@@ -88,10 +88,16 @@ const Bookings = () => {
         if(isValid){
 
             const booking = {
+                id: id,
                 title: title,
                 reason: reason,
                 timeSlot: timeSlot,
                 date: `${getMonthName(month)} ${selectedDate}, ${year}`
+            };
+
+            
+            const ID = {
+                id: id,  
             };
 
 
@@ -103,6 +109,7 @@ const Bookings = () => {
 
 
             localStorage.setItem(`${getMonthName(month)} ${selectedDate}, ${year}`, JSON.stringify(existingBookings));
+            localStorage.setItem(`ID`, JSON.stringify(ID));
 
 
             setTitle("");
@@ -110,6 +117,7 @@ const Bookings = () => {
             setTimeSlot("");
             SetBookingStatus("Booking Saved!");
             setBookingNum(bookingNum+1);
+            setId(id+1);
         }
 
       }
