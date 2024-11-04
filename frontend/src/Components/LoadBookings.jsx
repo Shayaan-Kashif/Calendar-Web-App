@@ -61,7 +61,8 @@ const LoadBookings = () => {
                             id= {booking.id}
                             title = {booking.title} 
                             reason={booking.reason} 
-                            time={booking.timeSlot}
+                            startTime={booking.startTime}
+                            endTime={booking.endTime}
                             date={`${getMonthName(month)} ${selectedDate}, ${year}`}
                             />  
                         ))

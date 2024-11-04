@@ -114,7 +114,10 @@ const Calendar = () => {
 
     // Function to handle clicking on a date
     const handleDateClick = (day) => {
-        setSelectedDate(day);
+        if(day !=null){
+            setSelectedDate(day);
+        }
+        
     };
 
 
@@ -151,11 +154,9 @@ const Calendar = () => {
                     {week.map((day, dayIndex) => (
                         <td
                         key={dayIndex}
-                        onClick={() => handleDateClick(day)} // Add onClick event
-                        className={`calendar-cell ${
-                            day === selectedDate ? "selected-date" : ""
-                        } ${bookedDays.includes(day) ? "booked-day" : ""} `}
-                        >
+                        onClick={() => handleDateClick(day)} // Added onClick event
+                        className={`calendar-cell ${day === selectedDate ? "selected-date" : ""} 
+                        ${bookedDays.includes(day) ? "booked-day" : ""} ${day === null ? "empty-cell" : ""}`}>
                         {day || ""} {/* Render day or empty cell */}
                     </td>
                 ))}

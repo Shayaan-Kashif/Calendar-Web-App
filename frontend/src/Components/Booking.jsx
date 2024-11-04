@@ -10,7 +10,8 @@ const Bookings = () => {
 
     const [title, setTitle] = useState("");
     const [reason, setReason] = useState("");
-    const [timeSlot, setTimeSlot] = useState("");
+    const [startTime, setStartTime] = useState("");
+    const [endTime, setEndTime] = useState("");
     const [BookingStatus,SetBookingStatus] = useState("");
    
 
@@ -74,7 +75,16 @@ const Bookings = () => {
             setReasonError("");
         }
 
-        if (timeSlot === "") {
+        if (startTime === "") {
+            setTimeSlotError("Time slot is required");
+            isValid = false;
+        } 
+        
+        else {
+            setTimeSlotError("");
+        }
+
+        if (endTime === "") {
             setTimeSlotError("Time slot is required");
             isValid = false;
         } 
@@ -88,17 +98,16 @@ const Bookings = () => {
         if(isValid){
 
             const booking = {
-                id: id,
+                id,
                 title: title,
                 reason: reason,
-                timeSlot: timeSlot,
+                startTime: startTime,
+                endTime: endTime,
                 date: `${getMonthName(month)} ${selectedDate}, ${year}`
             };
 
             
-            const ID = {
-                id: id,  
-            };
+            const ID = id;
 
 
 
@@ -114,7 +123,8 @@ const Bookings = () => {
 
             setTitle("");
             setReason("");
-            setTimeSlot("");
+            setStartTime("");
+            setEndTime("");
             SetBookingStatus("Booking Saved!");
             setBookingNum(bookingNum+1);
             setId(id+1);
@@ -135,12 +145,15 @@ const Bookings = () => {
                     <label for="reason">Reason:</label>
                     <input type="text" name="reason" className="booking-text" value={reason} placeholder="Enter Reason Here..." onChange={(e) => setReason(e.target.value)}></input>
 
-                    <label for="time-slot">Time Solt:</label>
-                    <input type="time" name="time-slot" value={timeSlot} onChange={(e) => setTimeSlot(e.target.value)}></input>
+                    <label for="start-time">Start Time:</label>
+                    <input type="time" name="start-time" value={startTime} onChange={(e) => setStartTime(e.target.value)}></input>
+
+                    <label for="end-time">End Time:</label>
+                    <input type="time" name="end-time" value={endTime} onChange={(e) => setEndTime(e.target.value)}></input>
 
                     <button onClick={hanndleBook}>Book</button>
 
-                    <p>{BookingStatus}</p>
+                    
                 </form>
             </div>
         

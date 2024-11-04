@@ -1,6 +1,6 @@
 .Booking {
     width: 400px;
-    height: 400px;
+    height: 460px;
     margin: 0 auto;
     padding: 20px;
     border-radius: 10px;
@@ -52,6 +52,7 @@
     border-radius: 5px;
     cursor: pointer;
     font-weight: bold;
+    margin-top: 5px;
   }
   
   .Booking button:hover {

@@ -42,6 +42,7 @@
     font-size: 20px; 
     padding: 10px;
     transition: background-color 0.3s ease; 
+    box-shadow: 0px 3px 7px rgba(0, 0, 0, 0.1);
 }
 
 
@@ -81,6 +82,13 @@ td {
 
 .booked-day {
     
-    color: red;
+    color: rgb(215, 4, 4);
     font-weight: bold;
+}
+
+
+.empty-cell:hover {
+    cursor: default;
+    background-color: #f9f9f9;
+
 }
