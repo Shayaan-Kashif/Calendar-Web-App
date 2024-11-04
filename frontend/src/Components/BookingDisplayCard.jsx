@@ -5,10 +5,39 @@ import '../Styles/BookingDisplayCard.css';
 const BookingDisplayCard = ({id,title,reason,startTime,endTime,date})=>{
 
     const {bookingNum, setBookingNum} = useContext(DateContext);
-    const [duration, setDuration] = useState(null);
+    const [durationHour, setDurationHour] = useState(0);
+    const [durationMinutes, setDurationMinutes] = useState(0);
 
 
+    useEffect(() => {
+
+        const start = String(startTime);
+        const end = String(endTime);
     
+
+        let [startHour, startMinutes] = start.split(":");
+        let [endHour, endMinutes] = end.split(":");
+    
+
+        startHour = parseInt(startHour, 10);
+        startMinutes = parseInt(startMinutes, 10);
+        endHour = parseInt(endHour, 10);
+        endMinutes = parseInt(endMinutes, 10);
+    
+
+        let hourDifference = endHour - startHour;
+        let minuteDifference = endMinutes - startMinutes;
+    
+
+        if (minuteDifference < 0) {
+          minuteDifference += 60;
+          hourDifference -= 1;
+        }
+    
+
+        setDurationHour(hourDifference);
+        setDurationMinutes(minuteDifference);
+      }, [startTime, endTime]);
     
      
 
@@ -35,13 +64,15 @@ const BookingDisplayCard = ({id,title,reason,startTime,endTime,date})=>{
 
     }
 
+ 
+
 
     return(
         <>
         <div class="card">
             <div className="booking-header">
                 <p><strong>Start Time: </strong>{startTime}</p>
-                <p><strong>Duration: </strong>Calulating...</p>
+                <p><strong>Duration: </strong>{durationHour} Hrs {durationMinutes} Mins</p>
                 <p><strong>End Time: </strong>{endTime}</p>
 
             </div>
