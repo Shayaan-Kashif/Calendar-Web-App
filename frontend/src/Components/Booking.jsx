@@ -54,11 +54,25 @@ const Bookings = () => {
       const hanndleBook = (e)=>{
         e.preventDefault();
 
+        const start = String(startTime);
+        const end = String(endTime);
+    
+        let [startHour, startMinutes] = start.split(":");
+        let [endHour, endMinutes] = end.split(":");
+
+        startHour = parseInt(startHour, 10);
+        endHour = parseInt(endHour, 10);
+
+    
+
+        let hourDifference = endHour - startHour;
+
 
         let isValid = true;
 
         if (title.trim() === "") {
             setTitleError("Title is required");
+            alert("Title is required");
             isValid = false;
         } 
         
@@ -68,6 +82,7 @@ const Bookings = () => {
 
         if (reason.trim() === "") {
             setReasonError("Reason is required");
+            alert("Reason is required");
             isValid = false;
         } 
         
@@ -76,7 +91,8 @@ const Bookings = () => {
         }
 
         if (startTime === "") {
-            setTimeSlotError("Time slot is required");
+            setTimeSlotError("Start time is required");
+            alert("Start time is required");
             isValid = false;
         } 
         
@@ -85,13 +101,25 @@ const Bookings = () => {
         }
 
         if (endTime === "") {
-            setTimeSlotError("Time slot is required");
+            setTimeSlotError("End time is required");
+            alert("End time is required");
             isValid = false;
         } 
         
         else {
             setTimeSlotError("");
         }
+
+        if(hourDifference <0){
+            setTimeSlotError("Not a valid time slot");
+            alert("Not a valid time slot");
+            isValid = false;
+        }
+
+        else {
+            setTimeSlotError("");
+        }
+
 
 
 
