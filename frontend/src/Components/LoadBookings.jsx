@@ -5,7 +5,7 @@ import BookingDisplayCard from "./BookingDisplayCard";
 
 const LoadBookings = () => {
 
-    const {today, year, month, day, selectedDate, setYear, setMonth, setDay, setSelectedDate, bookingNum, setBookingNum } = useContext(DateContext);
+    const {today, year, month, day, selectedDate, setYear, setMonth, setDay, setSelectedDate, bookingNum, setBookingNum,selectedMonth,selectedYear,setSelectedMonth,setSelectedYear } = useContext(DateContext);
     const [ending, setEnding] = useState("th");
     const [bookings, setBookings] = useState([]);
 
@@ -41,19 +41,19 @@ const LoadBookings = () => {
 
       useEffect(() => {
 
-        const Key = `${getMonthName(month)} ${selectedDate}, ${year}`;
+        const Key = `${getMonthName(selectedMonth)} ${selectedDate}, ${selectedYear}`;
         const storedBookings = JSON.parse(localStorage.getItem(Key)) || [];
 
 
         setBookings(storedBookings);
-    }, [selectedDate, month, year, bookingNum]);
+    }, [selectedDate, selectedMonth, selectedYear, bookingNum]);
 
 
     return(
         <>
             <h1>View Bookings</h1>
             <div className="LoadBookings">
-                <h3>Bookings for {getMonthName(month)} {selectedDate}{ending}, {year}</h3 >
+                <h3>Bookings for {getMonthName(selectedMonth)} {selectedDate}{ending}, {selectedYear}</h3 >
                 {bookings.length > 0 ? (
                         bookings.map((booking, index) => (
                             <BookingDisplayCard 

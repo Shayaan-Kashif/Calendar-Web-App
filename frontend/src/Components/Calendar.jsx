@@ -4,7 +4,7 @@ import { DateContext } from '../Context/DateContext';
 
 const Calendar = () => {
 
-    const {today, year, month, day, selectedDate, setYear, setMonth, setDay, setSelectedDate, bookingNum, setBookingNum } = useContext(DateContext);
+    const {today, year, month, day, selectedDate, setYear, setMonth, setDay, setSelectedDate, bookingNum, setBookingNum,selectedMonth,selectedYear,setSelectedMonth,setSelectedYear } = useContext(DateContext);
     const [bookings, setBookings] = useState([]);
     const [bookedDays, setBookedDays] = useState([]);
 
@@ -116,6 +116,8 @@ const Calendar = () => {
     const handleDateClick = (day) => {
         if(day !=null){
             setSelectedDate(day);
+            setSelectedMonth(month);
+            setSelectedYear(year);
         }
         
     };
@@ -155,7 +157,7 @@ const Calendar = () => {
                         <td
                         key={dayIndex}
                         onClick={() => handleDateClick(day)} // Added onClick event
-                        className={`calendar-cell ${day === selectedDate ? "selected-date" : ""} 
+                        className={`calendar-cell ${day === selectedDate && month === selectedMonth && year=== selectedYear? "selected-date" : ""} 
                         ${bookedDays.includes(day) ? "booked-day" : ""} ${day === null ? "empty-cell" : ""}`}>
                         {day || ""} {/* Render day or empty cell */}
                     </td>

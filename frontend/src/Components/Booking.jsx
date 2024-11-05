@@ -4,7 +4,7 @@ import { DateContext } from '../Context/DateContext';
 
 const Bookings = () => {
 
-    const {today, year, month, day, selectedDate, setYear, setMonth, setDay, setSelectedDate, bookingNum, setBookingNum,id, setId} = useContext(DateContext);
+    const {today, year, month, day, selectedDate, setYear, setMonth, setDay, setSelectedDate, bookingNum, setBookingNum,id, setId,selectedMonth,selectedYear,setSelectedMonth,setSelectedYear} = useContext(DateContext);
     const [ending, setEnding] = useState("th");
 
 
@@ -131,7 +131,7 @@ const Bookings = () => {
                 reason: reason,
                 startTime: startTime,
                 endTime: endTime,
-                date: `${getMonthName(month)} ${selectedDate}, ${year}`
+                date: `${getMonthName(selectedMonth)} ${selectedDate}, ${selectedYear}`
             };
 
             
@@ -139,13 +139,13 @@ const Bookings = () => {
 
 
 
-            const existingBookings = JSON.parse(localStorage.getItem(`${getMonthName(month)} ${selectedDate}, ${year}`)) || [];
+            const existingBookings = JSON.parse(localStorage.getItem(`${getMonthName(selectedMonth)} ${selectedDate}, ${selectedYear}`)) || [];
 
 
             existingBookings.push(booking);
 
 
-            localStorage.setItem(`${getMonthName(month)} ${selectedDate}, ${year}`, JSON.stringify(existingBookings));
+            localStorage.setItem(`${getMonthName(selectedMonth)} ${selectedDate}, ${selectedYear}`, JSON.stringify(existingBookings));
             localStorage.setItem(`ID`, JSON.stringify(ID));
 
 
@@ -165,7 +165,7 @@ const Bookings = () => {
         <>
             <h1>Create Bookings</h1>
             <div className="Booking">
-                <h3>What would you like to book for {getMonthName(month)} {selectedDate}{ending}, {year}?</h3>
+                <h3>What would you like to book for {getMonthName(selectedMonth)} {selectedDate}{ending}, {selectedYear}?</h3>
                 <form>
                     <label for="title">Title:</label>
                     <input type="text" name="title" className="booking-text" value={title} placeholder="Enter Your Title Here..." onChange={(e) => setTitle(e.target.value)}></input>
