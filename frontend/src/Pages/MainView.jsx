@@ -16,11 +16,11 @@ const MainView = () => {
         </div>
 
         <div className="load-booking-section">
-          <LoadBookings />
+          <LoadBookings />{/*LoadBookings component */}
         </div>
 
         <div className="booking-section">
-          <Bookings />
+          <Bookings />{/*Bookings component */}
         </div>
 
       </div>

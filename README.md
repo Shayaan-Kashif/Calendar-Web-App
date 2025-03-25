@@ -12,7 +12,7 @@ This project is a web-based calendar application. The calendar allows users to n
 ## Technologies Used
 - **HTML**: Provides the basic structure for the calendar.
 - **CSS**: Styles the calendar for a user-friendly and visually appealing interface.
-- **JavaScript**: Handles the interactive elements such as navigating months and booking time slots.
+- **React.js**: Handles the interactive elements such as navigating months and booking time slots.
 
 ## Additional Features
 - **Error Handling**: Proper error handling ensures smooth functionality and provides informative error messages to users when issues arise.
@@ -20,5 +20,17 @@ This project is a web-based calendar application. The calendar allows users to n
    - A visually appealing design with an easy-to-read color palette.
    - Accessible and user-friendly interface with appropriate spacing and font choices.
 
+## Installation
 
-
+1. Navigate to the frontend directory in the terminal
+```bash
+    cd frontend
+```
+2. Install dependancies (if not already installed)
+```bash
+    npm install
+```
+3. To Run 
+```bash
+    npm start
+```
